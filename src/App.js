@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
+import './App.css';  // Make sure to import the CSS file
 
-function App() {
+const App = () => {
+  const [isRegister, setIsRegister] = useState(true);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button className="switch-button" onClick={() => setIsRegister(!isRegister)}>
+        {isRegister 
+          ? "Don't have an account? Register" 
+          : "Already have an account? Login"}
+      </button>
+      <div className="form-container">
+        {isRegister ? <RegisterForm /> : <LoginForm />}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
